@@ -6,6 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import xyz.mlserver.afkroom.AFKRoom;
 import xyz.mlserver.afkroom.utils.LocationYmlAPI;
 
 public class AFKStartListener implements Listener {
@@ -17,6 +18,7 @@ public class AFKStartListener implements Listener {
         LocationYmlAPI.getFinalLocationMap().put(player.getUniqueId(), finalLocation);
         player.teleport(LocationYmlAPI.getLocation());
         LocationYmlAPI.saveLocation();
+        AFKRoom.getAFKTeam().addEntry(player.getName());
     }
 
 }

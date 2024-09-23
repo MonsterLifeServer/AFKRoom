@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import xyz.mlserver.afkroom.AFKRoom;
 import xyz.mlserver.afkroom.utils.LocationYmlAPI;
 
 import java.util.UUID;
@@ -26,6 +27,7 @@ public class AFKStopListener implements Listener {
         }
         player.teleport(finalLocation);
         LocationYmlAPI.saveLocation();
+        AFKRoom.getAFKTeam().removeEntry(player.getName());
     }
 
     @EventHandler
@@ -38,6 +40,7 @@ public class AFKStopListener implements Listener {
             player.teleport(finalLocation);
             LocationYmlAPI.saveLocation();
         }
+        AFKRoom.getAFKTeam().removeEntry(player.getName());
     }
 
 }

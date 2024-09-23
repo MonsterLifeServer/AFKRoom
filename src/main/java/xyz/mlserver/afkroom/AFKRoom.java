@@ -1,6 +1,8 @@
 package xyz.mlserver.afkroom;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.Team;
 import xyz.mlserver.afkroom.utils.LocationYmlAPI;
 import xyz.mlserver.java.sql.DataBase;
 import xyz.mlserver.java.sql.mysql.MySQL;
@@ -22,6 +24,12 @@ public final class AFKRoom extends JavaPlugin {
     public static int port;
 
     public static boolean isMySQL = false;
+
+    private static Team afkTeam;
+
+    public static Team getAFKTeam() {
+        return afkTeam;
+    }
 
     @Override
     public void onEnable() {
@@ -45,6 +53,14 @@ public final class AFKRoom extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new xyz.mlserver.afkroom.listeners.AFKStopListener(), this);
 
         LocationYmlAPI.loadLocation();
+
+        Scoreboard scoreboard = getServer().getScoreboardManager().getNewScoreboard();
+        if (scoreboard.getTeam("AFK") == null) {
+            afkTeam = scoreboard.registerNewTeam("AFK");
+        } else {
+            afkTeam = scoreboard.getTeam("AFK");
+        }
+        afkTeam.setOption(Team.Option.COLLISION_RULE, Team.OptionStatus.NEVER);
     }
 
     @Override
