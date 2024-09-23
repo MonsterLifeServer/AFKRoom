@@ -1,0 +1,10 @@
+# データベースの設定(sqlite or mysql)
+database: sqlite
+
+# mysqlの設定
+mysql:
+  host: localhost
+  port: 3306
+  database: afk
+  user: root
+  password: password
