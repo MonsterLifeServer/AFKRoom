@@ -1,4 +1,4 @@
-name: AfkRoom
+name: AFKRoom
 version: '${project.version}'
 main: xyz.mlserver.afkroom.AFKRoom
 
